@@ -1,0 +1,74 @@
+{
+  "name": "BrightSmile Global Error Handler",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4ffbada9-dfb1-4290-a369-aa50f16e7a06",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0C34UHKY92",
+          "mode": "list",
+          "cachedResultName": "spark-error-alert"
+        },
+        "text": "=🚨 *n8n workflow failed*\n*Workflow:* {{ $json.workflow?.name ?? 'unknown' }}\n*Failed node:* {{ $json.execution?.lastNodeExecuted ?? 'unknown' }}\n*Error:* {{ String($json.execution?.error?.message ?? 'no message').slice(0, 500) }}\n*Open the run:* {{ $json.execution?.url ?? 'no link' }}",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.7,
+      "position": [
+        224,
+        0
+      ],
+      "id": "2c3ba10a-db25-4336-9f23-f02eadc683f3",
+      "name": "Error Alert",
+      "webhookId": "80f17d54-7b12-4840-b196-460e15965d6c",
+      "credentials": {
+        "slackApi": {
+          "id": "Q6bMmqZFxdym4dZt",
+          "name": "spark-alert"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Error Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true
+  },
+  "versionId": "d05f4938-2bfe-4d7f-bfa8-c8fc9d622a93",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f94b5c0a9a0b4d6bf0ce994c5786515525a7ccdf1eeefc29a152c27202100573"
+  },
+  "nodeGroups": [],
+  "id": "Px6Xeh6YjpTTgcXW",
+  "tags": []
+}
