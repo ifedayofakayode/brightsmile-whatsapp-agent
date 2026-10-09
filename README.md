@@ -5,7 +5,7 @@
 
 **▶ [60-second demo](YOUR_LOOM_LINK)**
 
-![Workflow overview](docs/images/01-workflow-canvas.png)
+![Workflow overview](docs/01-workflow-canvas.png)
 
 > **Project.** BrightSmile is a fictional dental clinic. All prices, policies and data are invented.
 
